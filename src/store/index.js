@@ -1,15 +1,9 @@
 import { createStore } from "vuex";
 
 export default createStore({
-  state: {
-    key: "",
-  },
+  state: {},
   getters: {},
-  mutations: {
-    getKey(state) {
-      state.key = window.localStorage.getItem("dly-key");
-    },
-  },
+  mutations: {},
   actions: {},
   modules: {},
 });

@@ -1,44 +1,11 @@
 <template>
   <div id="app" class="center-screen">
-    <div v-if="reg">
-      <button class="button-80" @click="handleClick">CLICK ME!!</button>
-    </div>
-    <div v-if="!reg">
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import { mapMutations, mapState } from "vuex";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-
-export default {
-  data: () => ({}),
-  computed: {
-    reg() {
-      return this.key !== "key for dly";
-    },
-    ...mapState(["key"]),
-  },
-  methods: {
-    handleClick() {
-      console.log("click");
-      window.localStorage.setItem("dly-key", "key for dly");
-      this.getKey();
-      const auth = getAuth();
-      const provider = new GoogleAuthProvider();
-      signInWithPopup(auth, provider);
-    },
-    ...mapMutations(["getKey"]),
-  },
-  updated() {
-    console.log("update");
-  },
-  mounted() {
-    this.getKey();
-  },
-};
+export default {};
 </script>
 
 <style>
