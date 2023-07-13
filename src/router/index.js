@@ -38,7 +38,7 @@ const routes = [
     },
   },
   {
-    path: "/reg-device/:key",
+    path: "/reg-device/",
     name: "reg-device",
     component: RegDeviceView,
     beforeEnter: (to, from, next) => {

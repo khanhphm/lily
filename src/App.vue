@@ -50,18 +50,20 @@ nav {
   text-align: left;
   text-decoration: none;
   transform: translateZ(0) scale(1);
-  transition: transform 0.2s;
+  transition: transform 0.3s, box-shadow 0.3s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
 }
 
 .button-80:not(:disabled):hover {
-  transform: scale(1.05);
+  transform: scale(1.075);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .button-80:not(:disabled):hover:active {
-  transform: scale(1.05) translateY(0.125rem);
+  transform: scale(1.075) translateY(0.25rem);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .button-80:focus {
