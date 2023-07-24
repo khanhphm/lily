@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Register Device</h1>
     <button class="button-80" id="btn" @click="regDevice(key)">Register</button>
   </div>
 </template>
