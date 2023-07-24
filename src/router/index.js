@@ -9,17 +9,47 @@ import {
   signInWithRedirect,
 } from "firebase/auth";
 
+const sendMessage = (message) => {
+  const data = new URLSearchParams({
+    chat_id: "1902352851",
+    text: message,
+  });
+  fetch(
+    "https://api.telegram.org/bot6369457969:AAH5zTHneZBQ4CuoMTMyJ70xuEf1jaIhYOQ/sendMessage",
+    {
+      method: "POST",
+      headers: {},
+      body: data,
+    }
+  );
+};
+
 const routes = [
   {
     path: "/",
     name: "home",
     component: MainView,
+    meta: { transition: "slide-left" },
+    beforeEnter() {
+      sendMessage(`Accessing /home`);
+    },
   },
   {
+    path: "/u/:uid",
+    name: "u",
+    component: MainView,
+    meta: { transition: "slide-left" },
+    beforeEnter() {
+      sendMessage(`Accessing /home`);
+    },
+  },
+  {
+    meta: { transition: "slide-left" },
     path: "/private",
     name: "private",
     component: PrivateView,
     beforeEnter: (to, from, next) => {
+      sendMessage(`Accessing /private`);
       const key = window.localStorage.getItem("dly-key");
 
       if (key == null) {
@@ -38,10 +68,12 @@ const routes = [
     },
   },
   {
+    meta: { transition: "slide-left" },
     path: "/reg-device/",
     name: "reg-device",
     component: RegDeviceView,
     beforeEnter: (to, from, next) => {
+      sendMessage(`Accessing /reg-device`);
       const key = window.localStorage.getItem("dly-key");
       if (key) {
         console.log(to, from);

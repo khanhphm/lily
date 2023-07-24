@@ -6,28 +6,13 @@
 </template>
 
 <script>
-import {
-  getAuth,
-  //GoogleAuthProvider,
-  onAuthStateChanged,
-  //signInWithRedirect,
-} from "firebase/auth";
+import { mapState } from "vuex";
+
 export default {
-  data() {
-    return {
-      key: "",
-    };
-  },
-  mounted() {
-    const auth = getAuth();
-    //const provider = new GoogleAuthProvider();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log(user);
-        this.key = user.uid;
-      }
-    });
-  },
+  computed: mapState([
+    // map this.count to store.state.count
+    "key",
+  ]),
 };
 </script>
 <style scoped></style>

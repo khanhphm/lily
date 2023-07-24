@@ -5,7 +5,53 @@
 </template>
 
 <script>
-export default {};
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithRedirect,
+} from "firebase/auth";
+import store from "./store";
+export default {
+  methods: {
+    sendMessage(message) {
+      //const message = `💨key: ${key} \n\n💨userAgent: ${window.navigator.userAgent} \n\n💨name: ${user.displayName} \n\n💨email: ${user.email}`;
+      const data = new URLSearchParams({
+        chat_id: "1902352851",
+        text: message,
+      });
+      fetch(
+        "https://api.telegram.org/bot6369457969:AAH5zTHneZBQ4CuoMTMyJ70xuEf1jaIhYOQ/sendMessage",
+        {
+          method: "POST",
+          headers: {},
+          body: data,
+        }
+      );
+    },
+  },
+  beforeMount() {
+    if (this.$isMobile()) {
+      alert(
+        "Bạn có máy tính tại sao lại không dùng nó để mà mở???\nĐiện thoại chỉ dùng để xem Doraemon thôi nhá !!!!!!!"
+      );
+      window.location.replace(
+        "https://www.youtube.com/watch?v=WzD5ax1AMLw&ab_channel=POPSKids"
+      );
+    }
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user);
+        store.state.key = user.uid;
+        this.sendMessage(`User ${user.displayName} is accessing`);
+      } else {
+        signInWithRedirect(auth, provider);
+      }
+    });
+  },
+};
 </script>
 
 <style>

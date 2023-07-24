@@ -5,30 +5,13 @@
 </template>
 
 <script>
-import {
-  getAuth,
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithRedirect,
-} from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import { mapState } from "vuex";
 //import bot from "../plugins/tele.js";
 
 export default {
-  data: () => ({
-    key: "",
-  }),
-  beforeMount() {
-    const auth = getAuth();
-    const provider = new GoogleAuthProvider();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log(user);
-        this.key = user.uid;
-      } else {
-        signInWithRedirect(auth, provider);
-      }
-    });
-  },
+  computed: mapState(["key"]),
+
   methods: {
     regDevice(key) {
       const user = getAuth().currentUser;

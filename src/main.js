@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import { initializeApp } from "firebase/app";
+import VueMobileDetection from "vue-mobile-detection";
 const firebaseConfig = {
   apiKey: "AIzaSyDuBd9valC48mipiqFV6J2RrdKJ-q0SxlY",
   authDomain: "for-dly.firebaseapp.com",
@@ -14,4 +15,4 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-createApp(App).use(store).use(router).mount("#app");
+createApp(App).use(store).use(router).use(VueMobileDetection).mount("#app");
