@@ -1,6 +1,8 @@
 <template>
   <div>
-    <button class="button-80" id="btn" @click="regDevice(key)">Register</button>
+    <button class="button-80" id="btn" @click="regDevice(key)">
+      Click Me 🌷
+    </button>
   </div>
 </template>
 

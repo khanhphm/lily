@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import MainView from "../views/MainView.vue";
 import PrivateView from "../views/PrivateView.vue";
 import RegDeviceView from "../views/RegDeviceView.vue";
+import AccessView from "../views/AccessView.vue";
 import {
   GoogleAuthProvider,
   getAuth,
@@ -35,17 +36,38 @@ const routes = [
     },
   },
   {
-    path: "/u/:uid",
-    name: "u",
-    component: MainView,
+    path: "/ac",
+    name: "access",
+    component: AccessView,
     meta: { transition: "slide-left" },
-    beforeEnter() {
-      sendMessage(`Accessing /home`);
+
+    beforeEnter: (to, from, next) => {
+      sendMessage(`Accessing /private`);
+      const key = window.localStorage.getItem("dly-key");
+
+      if (key == null) {
+        alert(
+          "Bạn đâu có quyền xem đâu nhỉ???\nLiên hệ lại với KhanhPhm đi nhá"
+        );
+        window.location.replace("https://facebook.com/giakhanh30125");
+      } else {
+        const auth = getAuth();
+        const provider = new GoogleAuthProvider();
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            sendMessage(`${user.displayName} is accessing /ac`);
+            next();
+          } else {
+            signInWithRedirect(auth, provider);
+          }
+        });
+      }
     },
   },
+
   {
     meta: { transition: "slide-left" },
-    path: "/private",
+    path: "/u/:uid",
     name: "private",
     component: PrivateView,
     beforeEnter: (to, from, next) => {
@@ -54,16 +76,10 @@ const routes = [
 
       if (key == null) {
         next({ name: "home" }); //đá về trang đăng ký thiết bị
+      } else if (to.params.uid == key) {
+        next();
       } else {
-        const auth = getAuth();
-        const provider = new GoogleAuthProvider();
-        onAuthStateChanged(auth, (user) => {
-          if (user) {
-            next();
-          } else {
-            signInWithRedirect(auth, provider);
-          }
-        });
+        next({ name: "home" });
       }
     },
   },

@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import { initializeApp } from "firebase/app";
 import VueMobileDetection from "vue-mobile-detection";
+
 const firebaseConfig = {
   apiKey: "AIzaSyDuBd9valC48mipiqFV6J2RrdKJ-q0SxlY",
   authDomain: "for-dly.firebaseapp.com",
