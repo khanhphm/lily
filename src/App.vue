@@ -12,6 +12,7 @@ import {
   signInWithRedirect,
 } from "firebase/auth";
 import store from "./store";
+
 export default {
   methods: {
     sendMessage(message) {
@@ -59,7 +60,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
