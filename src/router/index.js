@@ -85,7 +85,7 @@ const routes = [
   },
   {
     meta: { transition: "slide-left" },
-    path: "/reg-device/",
+    path: "/re",
     name: "reg-device",
     component: RegDeviceView,
     beforeEnter: (to, from, next) => {
