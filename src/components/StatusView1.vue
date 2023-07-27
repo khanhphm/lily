@@ -8,7 +8,8 @@
       class="button-x"
       id="btn"
       @click="
-        (text) => {
+        () => {
+          console.log(text);
           sendMessage(`📩📩📩Her message: \n ${text}`);
           show = false;
         }
