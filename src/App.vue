@@ -33,6 +33,7 @@ export default {
   },
   beforeMount() {
     if (this.$isMobile()) {
+      this.$router.push("/");
       alert(
         "Bạn có máy tính tại sao lại không dùng nó để mà mở???\nĐiện thoại chỉ dùng để xem Doraemon thôi nhá !!!!!!!"
       );
